@@ -35,6 +35,8 @@ public class ArrayDeque<T> {
         }
         items[nextFirst] = item;
         nextFirst = (nextFirst + length - 1) % length;
+
+        size += 1;
     }
 
     /** add an item of type T to the end of the deque */
@@ -44,6 +46,8 @@ public class ArrayDeque<T> {
         }
         items[nextLast] = item;
         nextLast = (nextLast + 1) % length;
+
+        size += 1;
     }
 
     /** return whether the deque is empty */
@@ -104,7 +108,7 @@ public class ArrayDeque<T> {
     }
 
     /** print the entire deque from front to end */
-    public void print(){
+    public void printDeque(){
         for(int i = (nextFirst+1)%length;i != nextLast; i = (i + 1)%length){
             System.out.print(items[i] + " ");
         }

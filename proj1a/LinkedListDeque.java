@@ -84,11 +84,10 @@ public class LinkedListDeque<T> {
         if(isEmpty()){
             return null;
         }
-        Node first = sentinel.next;
-        T t = first.item;
-        first.next.prev = first.prev;
-        first.prev.next = first.next;
-        sentinel.next = first.next;
+
+        T t = sentinel.next.item;
+        sentinel.next.next.prev = sentinel;
+        sentinel.next = sentinel.next.next;
 
         size -= 1;
 
@@ -101,10 +100,11 @@ public class LinkedListDeque<T> {
             return null;
         }
 
-        Node last = sentinel.next.prev;
-        T t = last.item;
-        last.prev.next = last.next;
-        sentinel.next.prev = last.prev;
+        T t = sentinel.prev.item;
+
+        sentinel.prev.prev.next = sentinel;
+        sentinel.prev = sentinel.prev.prev;
+
         size -= 1;
 
         return t;
