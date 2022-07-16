@@ -1,85 +1,108 @@
+/**
+ * deque based on linked list.
+ *
+ * @param <T>
+ * @author diskui
+ */
 public class LinkedListDeque<T> {
-    private class Node{
+    /**
+     * inner node class.
+     */
+    private class Node {
+        /** type T node. */
         private T item;
+        /** previous node. */
         private Node prev;
+        /** next node. */
         private Node next;
 
-        /** construct a new node with three parameters:
-         * item
-         * previous node
-         * next node
-         * @param item
-         * @param prev
-         * @param next
-         * */
-        public Node(T item,Node prev,Node next){
-            this.item = item;
-            this.prev = prev;
-            this.next = next;
+        /** construct a new node with three parameters.
+         * @param t item
+         * @param p prev
+         * @param n next
+         */
+        Node(T t, Node p, Node n) {
+            item = t;
+            prev = p;
+            next = n;
         }
 
-        /** construct a new node with two parameters:
+        /** construct a new node with two parameters.
          * previous node
          * next node
-         * @param prev
-         * @param next
+         *
+         * @param p prev
+         * @param n next
          */
-        public Node(Node prev,Node next){
-            this.prev = prev;
-            this.next = next;
+        Node(Node p, Node n) {
+            prev = p;
+            next = n;
         }
     }
+
+    /** sentinel node. */
     private Node sentinel;
+    /** the size of deque. */
     private int size;
 
-    /** construct a empty double-ended quene */
-    public LinkedListDeque(){
-        sentinel = new Node(null,null);
+    /** construct a empty double-ended quene.
+     */
+    public LinkedListDeque() {
+        sentinel = new Node(null, null);
         sentinel.prev = sentinel;
         sentinel.next = sentinel;
         size = 0;
     }
 
-    /** add an item of type T to the front of the double-ended queue */
-    public void addFirst(T item){
-        Node newNode = new Node(item,sentinel,sentinel.next);
+    /** add an item of type T to the front of the double-ended queue.
+     * @param item item
+     */
+    public void addFirst(T item) {
+        Node newNode = new Node(item, sentinel, sentinel.next);
         sentinel.next.prev = newNode;
         sentinel.next = newNode;
         size += 1;
     }
 
-    /** add an item of type of T to the end of the double-ended queue */
-    public void addLast(T item){
-        Node newNode = new Node(item,sentinel.prev,sentinel);
+    /** add an item of type of T to the end of the double-ended queue.
+     * @param item item
+     */
+    public void addLast(T item) {
+        Node newNode = new Node(item, sentinel.prev, sentinel);
         sentinel.prev.next = newNode;
         sentinel.prev = newNode;
 
         size += 1;
     }
 
-    /** return whether the queue is empty */
-    public boolean isEmpty(){
-//        return sentinel.next.prev == sentinel.next;
+    /** return whether the queue is empty.
+     */
+    public boolean isEmpty() {
         return size == 0;
     }
 
-    /** return the size of the queue */
-    public int size(){
+    /** return the size of the queue.
+     */
+    public int size() {
         return size;
     }
 
-    /** print the item(s) of the list from first to last, separated by a space */
-    public void printDeque(){
+    /** print the item(s) of the list from first to last,
+     *  separated by a space.
+     */
+    public void printDeque() {
         Node p = sentinel.next;
-        while(p != sentinel){
+        while (p != sentinel) {
             System.out.print(p.item + " ");
             p = p.next;
         }
     }
 
-    /** remove and return the first item of the queue, return null if it doesn't exist */
-    public T removeFirst(){
-        if(isEmpty()){
+    /** remove and return the first item of the queue, return null
+     *  if it doesn't exist.
+     */
+    public T removeFirst() {
+        if (isEmpty()) {
             return null;
         }
 
@@ -92,9 +115,11 @@ public class LinkedListDeque<T> {
         return t;
     }
 
-    /** remove and return the last item of the queue, return null if it doesn't exist */
-    public T removeLast(){
-        if(isEmpty()){
+    /** remove and return the last item of the queue, return null
+     *  if it doesn't exist.
+     */
+    public T removeLast() {
+        if (isEmpty()) {
             return null;
         }
 
@@ -109,39 +134,51 @@ public class LinkedListDeque<T> {
 
     }
 
-    /** get the item at given index where 0 is the front, if doesn't exist return null
+    /** get the item at given index where 0 is the front,
+     *  if doesn't exist return null.
      * must use iteration
-     * */
-    public T get(int index){
-        if(isEmpty()){
+     *
+     * @param index index
+     */
+    public T get(int index) {
+        if (isEmpty()) {
             return null;
         }
-        if(index > size){
+        if (index > size) {
             return null;
         }
         Node p = sentinel.next;
-        while(index != 0){
+        while (index != 0) {
             p = p.next;
             index -= 1;
         }
         return p.item;
     }
 
-    /** get the item at given index where 0 is the front, if doesn't exist return null
+    /** get the item at given index where 0 is the front.
+     * if doesn't exist return null.
      * recursive version
-     * */
-    public T getRecursive(int index){
-        if(index >= size){
+     *
+     * @param index index
+     */
+    public T getRecursive(int index) {
+        if (index >= size) {
             return null;
         }
-        return getHelper(sentinel.next,index);
+        return getHelper(sentinel.next, index);
     }
 
-    private T getHelper(Node n,int index){
-        if(index == 0) {
+    /** helper method of get recursive.
+     *
+     * @param n node
+     * @param index index
+     * @return type T
+     */
+    private T getHelper(Node n, int index) {
+        if (index == 0) {
             return n.item;
-        }else{
-            return getHelper(n.next,index -1);
+        } else {
+            return getHelper(n.next, index - 1);
         }
     }
 
