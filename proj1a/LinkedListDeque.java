@@ -121,7 +121,7 @@ public class LinkedListDeque<T> {
         if(index > size){
             return null;
         }
-        Node p = sentinel.next.next;
+        Node p = sentinel.next;
         while(index != 0){
             p = p.next;
         }
@@ -132,7 +132,7 @@ public class LinkedListDeque<T> {
      * recursive version
      * */
     public T getRecursive(int index){
-        return getHelper(sentinel.next.next,index);
+        return getHelper(sentinel.next,index);
     }
 
     private T getHelper(Node n,int index){

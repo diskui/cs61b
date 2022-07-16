@@ -18,7 +18,7 @@ public class ArrayDeque<T> {
     /** extend the array to the double size of before */
     private void grow(){
         T[] newArray = (T[]) new Object[length * 2];
-        for(int i = (nextFirst + 1) % length, j = 0; j < size; j+=1,i+=1){
+        for(int i = (nextFirst + 1) % length, j = 0; j < size; j += 1,i = (i + 1) % length){
             newArray[j] = items[i];
         }
         length *= 2;
