@@ -104,7 +104,7 @@ public class ArrayDeque<T> {
      * and so forth. If no such item exists, returns null.
      */
     public T get(int index) {
-        return items[(nextFirst + index) % length];
+        return items[(nextFirst + index + 1) % length];
     }
 
     /** print the entire deque from front to end */

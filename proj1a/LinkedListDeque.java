@@ -43,10 +43,8 @@ public class LinkedListDeque<T> {
     /** add an item of type T to the front of the double-ended queue */
     public void addFirst(T item){
         Node newNode = new Node(item,sentinel,sentinel.next);
+        sentinel.next.prev = newNode;
         sentinel.next = newNode;
-        if(isEmpty()){
-            sentinel.prev = newNode;
-        }
         size += 1;
     }
 
@@ -124,6 +122,7 @@ public class LinkedListDeque<T> {
         Node p = sentinel.next;
         while(index != 0){
             p = p.next;
+            index -= 1;
         }
         return p.item;
     }
@@ -132,6 +131,9 @@ public class LinkedListDeque<T> {
      * recursive version
      * */
     public T getRecursive(int index){
+        if(index >= size){
+            return null;
+        }
         return getHelper(sentinel.next,index);
     }
 
