@@ -1,11 +1,15 @@
 /**
  * @author diskui
  */
-public class OffByN implements CharacterComparator{
-    /** the offset number */
+public class OffByN implements CharacterComparator {
+    /** the offset number. */
     private int offset;
 
-    public OffByN(int n){
+    /** one int parameter construtor.
+     * n version of offset
+     * @param n number
+     */
+    public OffByN(int n) {
         offset = n;
     }
 
