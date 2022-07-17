@@ -15,6 +15,7 @@ public class TestArrayDequeGold {
     public void testArrayDeque() {
         StudentArrayDeque<Integer> test = new StudentArrayDeque<>();
         ArrayDequeSolution<Integer> right = new ArrayDequeSolution<>();
+        String log = "";
 
         for (int i = 0; i < 100; i += 0) {
             if (right.isEmpty()) {
@@ -23,9 +24,11 @@ public class TestArrayDequeGold {
                 if (select == 0) {
                     test.addFirst(toAdd);
                     right.addFirst(toAdd);
+                    log += "addFrist(" + toAdd + ")\n";
                 } else {
                     test.addLast(toAdd);
                     right.addLast(toAdd);
+                    log += "addLast(" + toAdd + ")\n";
                 }
             } else {
                 int select = StdRandom.uniform(4);
@@ -36,22 +39,26 @@ public class TestArrayDequeGold {
                     case 0:
                         test.addFirst(toAdd);
                         right.addFirst(toAdd);
+                        log += "addFrist(" + toAdd + ")\n";
                         break;
                     case 1:
                         test.addLast(toAdd);
                         right.addLast(toAdd);
+                        log += "addLast(" + toAdd + ")\n";
                         break;
                     case 2:
                         testRemove = test.removeFirst();
                         rightRemove = right.removeFirst();
+                        log += "removeFirst()\n";
                         break;
                     case 3:
                         testRemove = test.removeLast();
                         rightRemove = right.removeLast();
+                        log += "removeLast()\n";
                         break;
                     default:
                 }
-                assertEquals(testRemove, rightRemove);
+                assertEquals(log,testRemove, rightRemove);
             }
         }
     }
