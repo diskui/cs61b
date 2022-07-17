@@ -4,7 +4,7 @@
  * @param <T>
  * @author diskui
  */
-public class LinkedListDeque<T> implements Deque<T>{
+public class LinkedListDeque<T> implements Deque<T> {
     /**
      * inner node class.
      */

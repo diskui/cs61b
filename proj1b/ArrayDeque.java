@@ -4,7 +4,7 @@
  * @param <T> type T
  * @author diskui
  */
-public class ArrayDeque<T> implements Deque<T>{
+public class ArrayDeque<T> implements Deque<T> {
     /**
      * a array of type T.
      */
