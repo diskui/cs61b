@@ -18,48 +18,38 @@ public class TestArrayDequeGold {
         String log = "";
 
         for (int i = 0; i < 1000; i += 1) {
-            if (right.size() == 0) {
-                int select = StdRandom.uniform(2);
-                Integer toAdd = StdRandom.uniform(1000);
-                if (select == 0) {
+            int select = StdRandom.uniform(4);
+            Integer toAdd = StdRandom.uniform(1000);
+            Integer testRemove = 1;
+            Integer rightRemove = 1;
+            switch (select) {
+                case 0:
                     test.addFirst(toAdd);
                     right.addFirst(toAdd);
                     log += "addFrist(" + toAdd + ")\n";
-                } else {
+                    break;
+                case 1:
                     test.addLast(toAdd);
                     right.addLast(toAdd);
                     log += "addLast(" + toAdd + ")\n";
-                }
-            } else {
-                int select = StdRandom.uniform(4);
-                Integer toAdd = StdRandom.uniform(1000);
-                Integer testRemove = 1;
-                Integer rightRemove = 1;
-                switch (select) {
-                    case 0:
-                        test.addFirst(toAdd);
-                        right.addFirst(toAdd);
-                        log += "addFrist(" + toAdd + ")\n";
-                        break;
-                    case 1:
-                        test.addLast(toAdd);
-                        right.addLast(toAdd);
-                        log += "addLast(" + toAdd + ")\n";
-                        break;
-                    case 2:
+                    break;
+                case 2:
+                    if (!test.isEmpty() && !right.isEmpty()) {
                         testRemove = test.removeFirst();
                         rightRemove = right.removeFirst();
                         log += "removeFirst()\n";
                         break;
-                    case 3:
+                    }
+                case 3:
+                    if (!test.isEmpty() && !right.isEmpty()) {
                         testRemove = test.removeLast();
                         rightRemove = right.removeLast();
                         log += "removeLast()\n";
                         break;
-                    default:
-                }
-                assertEquals(log,rightRemove, testRemove);
+                    }
+                default:
             }
+            assertEquals(log, rightRemove, testRemove);
         }
     }
 }
