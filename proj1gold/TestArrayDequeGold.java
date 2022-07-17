@@ -17,8 +17,8 @@ public class TestArrayDequeGold {
         ArrayDequeSolution<Integer> right = new ArrayDequeSolution<>();
         String log = "";
 
-        for (int i = 0; i < 100; i += 1) {
-            if (right.isEmpty()) {
+        for (int i = 0; i < 1000; i += 1) {
+            if (right.size() == 0) {
                 int select = StdRandom.uniform(2);
                 Integer toAdd = StdRandom.uniform(1000);
                 if (select == 0) {
