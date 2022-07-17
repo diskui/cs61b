@@ -20,8 +20,6 @@ public class TestArrayDequeGold {
         for (int i = 0; i < 1000; i += 1) {
             int select = StdRandom.uniform(4);
             Integer toAdd = StdRandom.uniform(1000);
-            Integer testRemove = 1;
-            Integer rightRemove = 1;
             switch (select) {
                 case 0:
                     test.addFirst(toAdd);
@@ -35,21 +33,22 @@ public class TestArrayDequeGold {
                     break;
                 case 2:
                     if (!test.isEmpty() && !right.isEmpty()) {
-                        testRemove = test.removeFirst();
-                        rightRemove = right.removeFirst();
+                        Integer testRemove = test.removeFirst();
+                        Integer rightRemove = right.removeFirst();
+                        assertEquals(log,rightRemove,testRemove);
                         log += "removeFirst()\n";
                         break;
                     }
                 case 3:
                     if (!test.isEmpty() && !right.isEmpty()) {
-                        testRemove = test.removeLast();
-                        rightRemove = right.removeLast();
+                        Integer testRemove = test.removeLast();
+                        Integer rightRemove = right.removeLast();
+                        assertEquals(log,rightRemove,testRemove);
                         log += "removeLast()\n";
                         break;
                     }
                 default:
             }
-            assertEquals(log, rightRemove, testRemove);
         }
     }
 }
