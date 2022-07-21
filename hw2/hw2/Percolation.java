@@ -36,6 +36,9 @@ public class Percolation {
        if(row < 0 || col < 0 || row >= N || col >= N){
            throw new java.lang.IndexOutOfBoundsException();
        }
+       if(isOpen(row,col)){
+           return;
+       }
 
         grid[row][col] = true;
         openSite += 1;

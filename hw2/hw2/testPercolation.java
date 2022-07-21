@@ -14,9 +14,11 @@ public class testPercolation {
 
         for(int i = 0; i < 10; i++){
             p.open(i,2);
+            assertEquals(i+1,p.numberOfOpenSites());
+            System.out.println(p.numberOfOpenSites());
         }
 
-        assertTrue(p.percolates());
+
 
 
 
