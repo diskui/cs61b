@@ -6,8 +6,6 @@ public class Percolation {
 
     /** the inner disjoint-set */
     private WeightedQuickUnionUF wqu;
-    /** sites without bottom site */
-    private WeightedQuickUnionUF wqu1;
 
     /** the is-open? grid */
     private boolean[][] grid;
@@ -26,20 +24,9 @@ public class Percolation {
         openSite = 0;
 
         wqu = new WeightedQuickUnionUF(N * N + 2);
-        wqu1 = new WeightedQuickUnionUF(N * N + 1);
         grid = new boolean[N][N];
-        for(int i = 0; i < N; i++){
-            for(int j = 0; j < N; j++){
-                if(i == 0){
-                    wqu.union(xy2n(i,j),N*N);
-                    wqu1.union(xy2n(i,j),N*N);
-                }
-                if(i == N-1){
-                    wqu.union(xy2n(i,j),N*N+1);
-                }
-                grid[i][j] = false;
-            }
-        }
+
+
     }                // create N-by-N grid, with all sites initially blocked
     public void open(int row, int col){       // open the site (row, col) if it is not open already
        if(row < 0 || col < 0 || row >= N || col >= N){
@@ -59,7 +46,13 @@ public class Percolation {
         }
         if(col != N-1 && isOpen(row,col+1)){
             wqu.union(xy2n(row,col+1),xy2n(row,col));
-            wqu1.union(xy2n(row,col+1),xy2n(row,col));
+        }
+
+        if(row == 0){
+            wqu.union(xy2n(row,col),N*N);
+        }
+        if(row == N-1){
+            wqu.union(xy2n(row,col),N*N+1);
         }
 
 
@@ -76,7 +69,7 @@ public class Percolation {
         if(row < 0 || col < 0 || row >= N || col >= N){
             throw new java.lang.IndexOutOfBoundsException();
         }
-        return wqu1.connected(xy2n(row,col),N*N);
+        return wqu.connected(xy2n(row,col),N*N);
     }
     public int numberOfOpenSites(){           // number of open sites
         return openSite;
