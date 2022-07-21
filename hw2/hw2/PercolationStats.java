@@ -6,10 +6,13 @@ import edu.princeton.cs.introcs.StdStats;
 
 public class PercolationStats {
     private double[] res;
+
+    private int N;
     public PercolationStats(int N, int T, PercolationFactory pf){   // perform T independent experiments on an N-by-N grid
         if(N <= 0 || T <= 0){
             throw new java.lang.IllegalArgumentException();
         }
+        this.N = N;
         res = new double[T];
         int i = 0;
         while(i < T){
@@ -20,7 +23,7 @@ public class PercolationStats {
 
     private double compute(Percolation p){
         int opened = 0;
-        int n = p.getN();
+        int n = N;
         while(!p.percolates()){
             int x = StdRandom.uniform(n);
             int y = StdRandom.uniform(n);
