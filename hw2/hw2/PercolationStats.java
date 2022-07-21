@@ -18,6 +18,7 @@ public class PercolationStats {
         while(i < T){
             Percolation p = pf.make(N);
             res[i] = compute(p);
+            i++;
         }
     }
 
