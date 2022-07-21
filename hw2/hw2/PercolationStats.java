@@ -52,12 +52,4 @@ public class PercolationStats {
         return mean() + 1.96 * stddev() / Math.sqrt(res.length);
     }
 
-    public static void main(String[] args){
-        PercolationFactory pf = new PercolationFactory();
-        PercolationStats sf = new PercolationStats(10,50,pf);
-        System.out.println(sf.mean());
-        System.out.println(sf.stddev());
-        System.out.println(sf.confidenceHigh());
-        System.out.println(sf.confidenceLow());
-    }
 }
