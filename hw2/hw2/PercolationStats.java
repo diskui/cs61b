@@ -1,5 +1,6 @@
 package hw2;
 
+import edu.princeton.cs.algs4.TwoPersonZeroSumGame;
 import edu.princeton.cs.introcs.StdRandom;
 
 import edu.princeton.cs.introcs.StdStats;
@@ -35,7 +36,7 @@ public class PercolationStats {
             p.open(x,y);
             opened += 1;
         }
-        return opened / n * n;
+        return (double)opened / (double)(n * n);
     }
 
     public double mean(){                                           // sample mean of percolation threshold
@@ -49,5 +50,14 @@ public class PercolationStats {
     }
     public double confidenceHigh(){                                 // high endpoint of 95% confidence interval
         return mean() + 1.96 * stddev() / Math.sqrt(res.length);
+    }
+
+    public static void main(String[] args){
+        PercolationFactory pf = new PercolationFactory();
+        PercolationStats sf = new PercolationStats(10,50,pf);
+        System.out.println(sf.mean());
+        System.out.println(sf.stddev());
+        System.out.println(sf.confidenceHigh());
+        System.out.println(sf.confidenceLow());
     }
 }
