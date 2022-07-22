@@ -215,12 +215,21 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         if(index == -1){
             return;
         }
+
+
         contents[index].myPriority = priority;
 
         if(size() == 1){
             return;
         }
 
+        if(index == 1){
+            sink(index);
+        }
+
+        else if(leftIndex(index) > size){
+            swim(index);
+        }
         if(min(index,parentIndex(index)) == index){
             swim(index);
         }else if(min(min(leftIndex(index),rightIndex(index)),index) != index){
