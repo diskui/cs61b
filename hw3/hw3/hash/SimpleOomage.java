@@ -37,7 +37,10 @@ public class SimpleOomage implements Oomage {
             red /= 5;
             green /= 5;
             blue /= 5;
-            return red * 53 * 53 + blue * 53 + green;
+            int res = red;
+            res = res * 53 + green;
+            res = res * 71 + blue;
+            return res;
         }
     }
 

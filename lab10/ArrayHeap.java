@@ -28,7 +28,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     private static int leftIndex(int i) {
         /* TODO: Your code here! */
-        return 0;
+        return 2 * i;
     }
 
     /**
@@ -36,7 +36,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     private static int rightIndex(int i) {
         /* TODO: Your code here! */
-        return 0;
+        return 2 * i + 1;
     }
 
     /**
@@ -44,7 +44,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     private static int parentIndex(int i) {
         /* TODO: Your code here! */
-        return 0;
+        return i / 2;
     }
 
     /**
@@ -108,7 +108,13 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         validateSinkSwimArg(index);
 
         /** TODO: Your code here. */
-        return;
+        int pIndex = parentIndex(index);
+        while(inBounds(pIndex) && min(pIndex,index) == index){
+            swap(pIndex,index);
+            index = pIndex;
+            pIndex = parentIndex(pIndex);
+        }
+
     }
 
     /**
@@ -119,7 +125,12 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         validateSinkSwimArg(index);
 
         /** TODO: Your code here. */
-        return;
+        int minChildren = min(leftIndex(index),rightIndex(index));
+        while(inBounds(minChildren) && min(index,minChildren) == minChildren){
+            swap(index,minChildren);
+            index = minChildren;
+            minChildren = min(leftIndex(index),rightIndex(index));
+        }
     }
 
     /**
@@ -134,6 +145,10 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         }
 
         /* TODO: Your code here! */
+        Node n = new Node(item,priority);
+        contents[size+1] = n;
+        size += 1;
+        swim(size);
     }
 
     /**
@@ -143,7 +158,8 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
     @Override
     public T peek() {
         /* TODO: Your code here! */
-        return null;
+        Node n = contents[1];
+        return n.item();
     }
 
     /**

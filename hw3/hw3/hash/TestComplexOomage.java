@@ -43,7 +43,7 @@ public class TestComplexOomage {
 
         // Your code here.
 
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < 30; i++){
             List<Integer> params = new ArrayList<>();
             for(int j = 0; j < i; j++){
                 params.add(j * 5);
