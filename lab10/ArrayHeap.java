@@ -177,12 +177,12 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         if(size() == 0){
             return null;
         }
-        Node top = contents[1];
+        T t = contents[1].item();
         swap(1,size);
         contents[size] = null;
-        sink(1);
         size -= 1;
-        return top.item();
+        sink(1);
+        return t;
     }
 
     /**
