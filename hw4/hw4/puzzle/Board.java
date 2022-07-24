@@ -147,7 +147,7 @@ public class Board implements WorldState{
         return s.toString();
     }
 
-    public int hachCode(){
+    public int hashCode(){
         return 0;
     }
 
