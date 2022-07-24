@@ -111,7 +111,13 @@ public class Board implements WorldState{
         if(this == y){
             return true;
         }
+
+        if(y.getClass().equals("".getClass())){
+            return this.toString().equals(y);
+        }
+
         Board b = (Board) y;
+
         if(this.size() != b.size()){
             return false;
         }
@@ -139,6 +145,10 @@ public class Board implements WorldState{
         }
         s.append("\n");
         return s.toString();
+    }
+
+    public int hachCode(){
+        return 0;
     }
 
 }

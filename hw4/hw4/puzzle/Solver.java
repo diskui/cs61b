@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Solver {
-    public class SearchNode implements Comparable<SearchNode>{
+    private class SearchNode implements Comparable<SearchNode>{
         private WorldState state;
         private int moves;
         private SearchNode prev;
